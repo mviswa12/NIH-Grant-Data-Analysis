@@ -1,0 +1,185 @@
+# categories_config.py
+
+"""
+This configuration file defines the categories and parameters for NIH grant analysis.
+Users can modify these categories based on their research interests.
+
+Structure:
+1. Research_Areas: Main research categories and their subtypes
+2. Technology_Platform: Technical approaches used
+3. Study_Design: Types of research studies
+4. Award_Size: Funding amount categories
+"""
+
+GRANT_CATEGORIES = {
+    # 1. RESEARCH AREAS
+    'Research_Areas': {
+        # Example of a broad research area: Cancer
+        'Cancer': {
+            'keywords': [
+                'cancer', 'oncology', 'tumor', 'malignancy', 'neoplasm',
+                'carcinoma', 'metastasis'
+            ],
+            'subtypes': {
+                'Blood_Cancers': [
+                    'leukemia', 'lymphoma', 'myeloma',
+                    'hematologic malignancy'
+                ],
+                'Solid_Tumors': [
+                    'carcinoma', 'sarcoma', 'melanoma',
+                    'solid tumor', 'solid cancer'
+                ],
+                'Treatment_Approaches': [
+                    'chemotherapy', 'immunotherapy', 'radiation therapy',
+                    'targeted therapy', 'car-t'
+                ]
+            }
+        },
+
+        # Example of a different research area: Neuroscience
+        'Neuroscience': {
+            'keywords': [
+                'brain', 'neural', 'neuron', 'nervous system',
+                'cognitive', 'neuroscience'
+            ],
+            'subtypes': {
+                'Neurodegeneration': [
+                    'alzheimer', 'parkinson', 'huntington',
+                    'neurodegeneration', 'dementia'
+                ],
+                'Mental_Health': [
+                    'depression', 'anxiety', 'schizophrenia',
+                    'psychiatric', 'mental health'
+                ],
+                'Development': [
+                    'neurodevelopment', 'brain development',
+                    'neural development', 'developmental disorder'
+                ]
+            }
+        },
+
+        # Users can add more research areas following this pattern
+        # 'Your_Research_Area': {
+        #     'keywords': ['main_keyword1', 'main_keyword2'],
+        #     'subtypes': {
+        #         'Subtype1': ['specific_keyword1', 'specific_keyword2'],
+        #         'Subtype2': ['other_keyword1', 'other_keyword2']
+        #     }
+        # }
+    },
+
+    # 2. TECHNOLOGY PLATFORMS
+    'Technology_Platform': {
+        'Sequencing': {
+            'keywords': [
+                'sequencing', 'NGS', 'RNA-seq', 'DNA-seq',
+                'whole genome', 'exome'
+            ],
+            'subtypes': {
+                'Single_Cell': ['single-cell', 'scRNA-seq'],
+                'Bulk_Sequencing': ['bulk sequencing', 'whole genome'],
+                'Specialized': ['ChIP-seq', 'ATAC-seq']
+            }
+        },
+        'Imaging': {
+            'keywords': ['imaging', 'microscopy', 'scan', 'visualization'],
+            'subtypes': {
+                'Clinical': ['MRI', 'CT', 'PET', 'radiography'],
+                'Microscopy': ['electron microscopy', 'fluorescence'],
+                'Molecular': ['molecular imaging', 'probe']
+            }
+        }
+    },
+
+    # 3. STUDY DESIGN TYPES
+    'Study_Design': {
+        'Clinical_Trial_Phase': {
+            'Phase1': [
+                'phase 1', 'phase I', 'first in human',
+                'safety study', 'dose finding'
+            ],
+            'Phase2': [
+                'phase 2', 'phase II', 'proof of concept',
+                'efficacy study'
+            ],
+            'Phase3': [
+                'phase 3', 'phase III', 'confirmatory',
+                'pivotal trial'
+            ],
+            'Phase4': [
+                'phase 4', 'phase IV', 'post-market',
+                'post-approval'
+            ]
+        },
+        'Study_Type': {
+            'Observational': [
+                'cohort study', 'case-control',
+                'retrospective', 'prospective'
+            ],
+            'Interventional': [
+                'randomized', 'double-blind',
+                'placebo-controlled', 'clinical trial'
+            ]
+        }
+    },
+
+    # 4. AWARD SIZE CATEGORIES
+    'Award_Size': {
+        'Small': {'max_amount': 200000},          # Up to $200K
+        'Medium': {
+            'min_amount': 200000,
+            'max_amount': 1000000                 # $200K to $1M
+        },
+        'Large': {'min_amount': 1000000}          # Over $1M
+    }
+}
+
+# Additional processing configurations
+PROCESSING_CONFIG = {
+    'text_processing': {
+        'min_abstract_length': 100,               # Minimum abstract length to consider
+        'max_abstract_length': 10000,             # Maximum abstract length to process
+        'remove_stopwords': True,                 # Whether to remove common words
+        'apply_stemming': True                    # Whether to apply word stemming
+    },
+    
+    'similarity_thresholds': {
+        'high': 0.8,                             # Threshold for high similarity
+        'medium': 0.6,                           # Threshold for medium similarity
+        'low': 0.4                               # Threshold for low similarity
+    }
+}
+
+"""
+HOW TO ADD NEW CATEGORIES:
+
+1. Adding a New Research Area:
+   'Your_Area': {
+       'keywords': ['main_term1', 'main_term2'],  # Main identifying terms
+       'subtypes': {
+           'Subtype1': ['specific1', 'specific2'],  # More specific terms
+           'Subtype2': ['other1', 'other2']
+       }
+   }
+
+2. Adding a New Technology Platform:
+   'New_Technology': {
+       'keywords': ['tech1', 'tech2'],
+       'subtypes': {
+           'Subtype1': ['specific1', 'specific2']
+       }
+   }
+
+3. Adding a New Study Design Type:
+   In the Study_Design section, add new categories or phases as needed.
+
+4. Modifying Award Sizes:
+   Adjust the dollar amounts in 'Award_Size' to match your needs.
+
+TIPS:
+1. Keywords should be lowercase
+2. Use specific, unambiguous terms
+3. Include common variations of terms
+4. Consider abbreviations and full forms
+5. Be comprehensive but avoid overly generic terms
+"""
